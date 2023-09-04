@@ -6,10 +6,11 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
-    <!-- Display order details here -->
+    <div class="line-items">
     <% @order.line_items.each do |line_item| %>
       <%= render partial: 'line_item', locals: { line_item: line_item } %>
     <% end %>
+    </div>
     <p>Final Amount: <%= humanized_money_with_symbol Money.new(@order.total_cents, 'USD') %></p>
     <p>Email: <%= @order.email %></p>
   </div>

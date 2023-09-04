@@ -1,0 +1,20 @@
+.orders-show {
+  .order-details {
+    .line-items {
+      .line-item {
+        display: flex;
+        margin-bottom: 1em;
+        .line-item-image {
+          max-width: 100px; /* Adjust as needed */
+          margin-right: 1em;
+        }
+        .line-item-details {
+          flex-grow: 1;
+          h4 {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
