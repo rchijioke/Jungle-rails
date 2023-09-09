@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
+  get 'gif/cool'
+  get 'gif/free'
+  root to: 'products#index' # Set the root path to 'products#index'
+
+
+  # Routes for sessions controller
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
+  
+  get '/cool' => 'gif#cool'
+  get '/sweet' => 'gif#sweet'
+  get '/signup' => 'users#new'    # Route for displaying the signup form
+  post '/users' => 'users#create' # Route for user registration
 
   get 'about/index', to: 'about#index', as: 'about'
-  root to: 'products#index'
+  
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
@@ -14,7 +29,16 @@ Rails.application.routes.draw do
     resources :orders, only: [:create, :show]
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
+    resources :categories, only: [:index, :new, :create]
+
+  # User authentication routes
+  resources :users, only: [:new, :create] # Registration
+  get 'login', to: 'sessions#new'         # Login form
+  post 'login', to: 'sessions#create'      # Authenticate and log in
+  delete 'logout', to: 'sessions#destroy'  # Logout
   end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
